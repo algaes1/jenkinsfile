@@ -17,13 +17,13 @@ node {
    stage 'build'
    // set the version of the build artifact to the Jenkins BUILD_NUMBER so you can
    // map artifacts to Jenkins builds
-   sh "mvn package"
+   sh "/usr/bin/mvn package"
 
    stage 'test'
    parallel 'test': {
-     sh "mvn test; sleep 2;"
+     sh "/usr/bin/mvn test; sleep 2;"
    }, 'verify': {
-     sh "mvn verify; sleep 3"
+     sh "/usr/bin/mvn verify; sleep 3"
    }
 
    stage 'archive'
