@@ -18,11 +18,14 @@ node {
    // set the version of the build artifact to the Jenkins BUILD_NUMBER so you can
    // map artifacts to Jenkins builds
    sh "apt-get update && apt-get install -y maven && mvn package"
+   sh "echo `hostname`"
 
    stage 'test'
    parallel 'test': {
+     sh "echo `hostname`"
      sh "/usr/bin/mvn test; sleep 2;"
    }, 'verify': {
+     sh "echo `hostname`"
      sh "/usr/bin/mvn verify; sleep 3"
    }
 
